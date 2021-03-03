@@ -9,9 +9,14 @@ const MultiStepForm = (props) => {
     name: "",
     language: "",
   });
+  const [error, setError] = useState(false);
 
   const nextStep = () => {
-    setCurrentStep(currentStep + 1);
+    if (inputValue.language !== "") {
+      setCurrentStep(currentStep + 1);
+    } else {
+      setError(true);
+    }
   };
 
   const prevStep = () => {
@@ -34,6 +39,11 @@ const MultiStepForm = (props) => {
       if (convert.hasOwnProperty(key)) {
         var value = convert[key];
         props.handleUpdate(value);
+        // localStorage.setItem("newValue", JSON.stringify(value));
+        // localStorage.getItem("newValue");
+        // var storage = localStorage.getItem("newValue");
+        // console.log(storage);
+        // localStorage.setItem("watchList", JSON.stringify(props.formData));
       }
     }
     props.setIsVisible(false);
@@ -46,6 +56,7 @@ const MultiStepForm = (props) => {
           nextStep={nextStep}
           handleChange={handleChange}
           language={inputValue.language}
+          error={error}
         />
       );
     if (currentStep === 2)
@@ -55,6 +66,7 @@ const MultiStepForm = (props) => {
           prevStep={prevStep}
           handleChange={handleChange}
           name={inputValue.name}
+          error={error}
         />
       );
   };

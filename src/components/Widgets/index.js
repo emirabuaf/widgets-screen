@@ -6,7 +6,10 @@ import styles from "./styles.css";
 const Widgets = (props) => {
   return (
     <div className="container">
-      <WidgetsList formData={props.formData} />
+      <h1>Widgets</h1>
+      {!props.formData.length < 1 ? (
+        <WidgetsList formData={props.formData} />
+      ) : null}
       <AddWidget setIsVisible={props.setIsVisible} />
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 const Step1 = (props) => {
-  const { handleChange, nextStep } = props;
+  const { error, handleChange, nextStep } = props;
   return (
     <div>
       <p>
@@ -12,6 +12,8 @@ const Step1 = (props) => {
           onChange={handleChange}
         />
       </p>
+      {error ? <p className="error-message">All fields are required</p> : null}
+
       <button className="button" onClick={nextStep}>
         Next
       </button>

@@ -1,6 +1,6 @@
 import React from "react";
 const Step2 = (props) => {
-  const { handleChange, finishStep, prevStep } = props;
+  const { error, handleChange, finishStep, prevStep } = props;
   return (
     <div className="step1-wrapper">
       <p>
@@ -12,6 +12,8 @@ const Step2 = (props) => {
           onChange={handleChange}
         />
       </p>
+      {error ? <p>All field are required</p> : null}
+
       <button className="back-button" onClick={prevStep}>
         Back
       </button>

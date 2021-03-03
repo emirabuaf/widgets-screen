@@ -3,21 +3,17 @@ import "./App.css";
 import Widgets from "./components/Widgets";
 import MultiStepForm from "./components/MultiStepForm";
 
-const dataList = [
-  { name: "florian", language: "german" },
-  { name: "emir", language: "english" },
-];
-
 function App() {
-  const [formData, setFormData] = useState(dataList);
+  const [formData, setFormData] = useState(
+    JSON.parse(localStorage.getItem("newValue"))
+  );
   const [isVisible, setIsVisible] = useState(false);
-
-  console.log(isVisible);
 
   const updateData = (value) => {
     formData.push(value);
     const newArray = [...formData];
     setFormData(newArray);
+    localStorage.setItem("newValue", JSON.stringify(formData));
   };
 
   return (
