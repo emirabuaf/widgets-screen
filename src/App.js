@@ -11,10 +11,12 @@ const dataList = [
 function App() {
   const [formData, setFormData] = useState(dataList);
 
+  console.log(formData);
+
   return (
     <div className="App">
-      <Widgets formData={formData} />
-      <MultiStepForm />
+      <Widgets formData={formData} setFormData={setFormData} />
+      <MultiStepForm formData={formData} setFormData={setFormData} />
     </div>
   );
 }
