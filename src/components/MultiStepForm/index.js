@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
+import styles from "./styles.css";
 
 const MultiStepForm = (props) => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -25,13 +26,17 @@ const MultiStepForm = (props) => {
     }));
   };
 
-  const handleSubmit = () => {
-    setInputValue((prevState) => ({
-      inputValue: { name: "", language: "" },
-    }));
+  const handleSubmit = (key) => {
     const newValue = Object.values(inputValue);
-    props.formData.push(newValue);
-    console.log(newValue);
+    const convert = Object.assign({}, newValue);
+
+    for (key in convert) {
+      if (convert.hasOwnProperty(key)) {
+        var value = convert[key];
+        props.handleUpdate(value);
+      }
+    }
+    props.setIsVisible(false);
   };
 
   const showStep = () => {
@@ -40,7 +45,7 @@ const MultiStepForm = (props) => {
         <Step1
           nextStep={nextStep}
           handleChange={handleChange}
-          name={inputValue.name}
+          language={inputValue.language}
         />
       );
     if (currentStep === 2)
@@ -49,12 +54,12 @@ const MultiStepForm = (props) => {
           finishStep={handleSubmit}
           prevStep={prevStep}
           handleChange={handleChange}
-          language={inputValue.language}
+          name={inputValue.name}
         />
       );
   };
 
-  return <div>{showStep()}</div>;
+  return <div className="wizard-container">{showStep()}</div>;
 };
 
 export default MultiStepForm;

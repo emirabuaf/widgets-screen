@@ -4,15 +4,17 @@ const Step1 = (props) => {
   return (
     <div>
       <p>
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="language">Language:</label>
         <input
           type="text"
-          name="name"
-          value={props.name}
+          name="language"
+          value={props.language}
           onChange={handleChange}
         />
       </p>
-      <button onClick={nextStep}>Next</button>
+      <button className="button" onClick={nextStep}>
+        Next
+      </button>
     </div>
   );
 };

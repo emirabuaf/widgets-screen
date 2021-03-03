@@ -1,19 +1,23 @@
 import React from "react";
 const Step2 = (props) => {
-  const { handleChange, finishStep, back } = props;
+  const { handleChange, finishStep, prevStep } = props;
   return (
-    <div>
+    <div className="step1-wrapper">
       <p>
-        <label htmlFor="language">Language:</label>
+        <label htmlFor="name">Name:</label>
         <input
           type="text"
-          name="language"
-          value={props.language}
+          name="name"
+          value={props.name}
           onChange={handleChange}
         />
       </p>
-      <button onClick={back}>Back</button>
-      <button onClick={finishStep}>Finish</button>
+      <button className="back-button" onClick={prevStep}>
+        Back
+      </button>
+      <button className="button" onClick={finishStep}>
+        Finish
+      </button>
     </div>
   );
 };

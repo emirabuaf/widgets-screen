@@ -1,0 +1,45 @@
+.wizard-container {
+  background: white;
+  width: 500px;
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.wizard-container input {
+  margin-left: 10px;
+  height: 30px;
+  border: 1px solid #0275d8;
+  border-radius: 10px;
+  outline: none;
+}
+
+.step1-wrapper {
+  position: relative;
+}
+
+.button {
+  background-color: #0275d8;
+  color: white;
+  width: 150px;
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 17px;
+  outline: none;
+  cursor: pointer;
+}
+
+.back-button {
+  background-color: #d9534f;
+  color: white;
+  width: 150px;
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 17px;
+  margin-right: 20px;
+  outline: none;
+  cursor: pointer;
+}
