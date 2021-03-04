@@ -31,13 +31,12 @@ const MultiStepForm = (props) => {
 
   const handleSubmit = (key) => {
     const newValue = Object.values(inputValue);
-    const convert = Object.assign({}, newValue);
+    const newObject = Object.assign({}, newValue);
 
-    for (key in convert) {
-      if (convert.hasOwnProperty(key)) {
-        var value = convert[key];
-        console.log(value.name.length);
-        if (value.name == "") {
+    for (key in newObject) {
+      if (newObject.hasOwnProperty(key)) {
+        var value = newObject[key];
+        if (!value.name) {
           props.setIsVisible(true);
           setError(true);
         } else {
