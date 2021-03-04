@@ -23,7 +23,7 @@ const Step1 = (props) => {
           <option value="Portuguese">Portuguese</option>
         </select>
       </p>
-      {error ? <p className="error-message">All fields are required</p> : null}
+      {error ? <p className="error-message">All fields are required!</p> : null}
 
       <button
         data-test="component-next-button"

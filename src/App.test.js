@@ -15,7 +15,6 @@ const findByTestAttr = (wrapper, val) => wrapper.find(`[data-test='${val}']`);
 const setIsVisible = jest.fn();
 const nextStep = jest.fn();
 const updateData = jest.fn();
-const setModalVisible = jest.fn();
 
 const multiStepProps = {
   nextStep,
@@ -73,7 +72,11 @@ describe("multi-step wizard", () => {
 });
 
 test("The deleting widget asks confirmation with a modal window.", () => {
-  // does nothing
+  // not working
   const wrapper = shallow(<WidgetsList />);
-  const deleteWidget = findByTestAttr(wrapper, "component-modal");
+  const deleteWidget = findByTestAttr(wrapper, "component-delete");
+  const modalComponent = findByTestAttr(wrapper, "component-modal");
+
+  deleteWidget.simulate("click");
+  expect(modalComponent.length).toBe(1);
 });

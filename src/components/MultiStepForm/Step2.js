@@ -14,7 +14,7 @@ const Step2 = (props) => {
           onChange={handleChange}
         />
       </p>
-      {error ? <p className="error-message">All fields are required</p> : null}
+      {error ? <p className="error-message">All fields are required!</p> : null}
 
       <button className="button" onClick={finishStep}>
         Finish

@@ -25,8 +25,8 @@ const WidgetsList = (props) => {
         props.formData.map((widget, index) => (
           <div className="widget-wrapper" key={index}>
             <div className="name-language">
-              <p>Name:{widget.name}</p>
-              <p>Language:{widget.language}</p>
+              <p>Name: {widget.name}</p>
+              <p>Language: {widget.language}</p>
             </div>
             <button
               onClick={() => toggleVisible(index)}
