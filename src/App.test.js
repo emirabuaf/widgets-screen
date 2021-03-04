@@ -67,11 +67,13 @@ describe("multi-step wizard", () => {
     expect(step2Component.length).toBe(1);
   });
   test("Create button adds new widget and then takes back to overview on success.", () => {
+    // does nothing
     const wrapper = shallow(<App {...appProps} />);
   });
 });
 
 test("The deleting widget asks confirmation with a modal window.", () => {
+  // does nothing
   const wrapper = shallow(<WidgetsList />);
   const deleteWidget = findByTestAttr(wrapper, "component-modal");
 });

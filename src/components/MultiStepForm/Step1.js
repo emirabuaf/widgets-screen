@@ -7,13 +7,20 @@ const Step1 = (props) => {
         <label data-test="component-language" htmlFor="language">
           Language:
         </label>
-        <select name="language" onChange={handleChange}>
+        <select
+          className="select-dropdown"
+          name="language"
+          onChange={handleChange}
+        >
           <option disabled selected value={props.value}>
             -- select an option --
           </option>
           <option value="German">German</option>
           <option value="English">English</option>
           <option value="Spanish">Spanish</option>
+          <option value="Mandarin">Mandarin</option>
+          <option value="Italian">Italian</option>
+          <option value="Portuguese">Portuguese</option>
         </select>
       </p>
       {error ? <p className="error-message">All fields are required</p> : null}

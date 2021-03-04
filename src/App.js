@@ -27,6 +27,7 @@ function App() {
       {isVisible == true ? (
         <MultiStepForm
           data-test="component-multistep"
+          isVisible={isVisible}
           setIsVisible={setIsVisible}
           handleUpdate={updateData}
           formData={formData}

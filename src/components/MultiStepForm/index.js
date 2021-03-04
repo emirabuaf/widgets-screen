@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import styles from "./styles.css";
+import FormModal from "./FormModal";
 
 const MultiStepForm = (props) => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -35,6 +36,7 @@ const MultiStepForm = (props) => {
     for (key in convert) {
       if (convert.hasOwnProperty(key)) {
         var value = convert[key];
+        console.log(value.name.length);
         if (value.name == "") {
           props.setIsVisible(true);
           setError(true);
@@ -69,7 +71,16 @@ const MultiStepForm = (props) => {
       );
   };
 
-  return <div className="wizard-container">{showStep()}</div>;
+  return (
+    <div>
+      <FormModal
+        currentStep={currentStep}
+        showSteps={showStep()}
+        show={props.isVisible}
+        onHide={() => props.setIsVisible(false)}
+      />
+    </div>
+  );
 };
 
 export default MultiStepForm;

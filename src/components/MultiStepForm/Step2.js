@@ -7,6 +7,7 @@ const Step2 = (props) => {
       <p>
         <label htmlFor="name">Name:</label>
         <input
+          className="input"
           type="text"
           name="name"
           value={props.value}

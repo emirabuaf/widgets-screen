@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./styles.css";
 import ModalForm from "../Modal";
 
@@ -21,10 +21,10 @@ const WidgetsList = (props) => {
 
   return (
     <div>
-      {props.formData &&
+      {props.formData.length !== 0 ? (
         props.formData.map((widget, index) => (
           <div className="widget-wrapper" key={index}>
-            <div>
+            <div className="name-language">
               <p>Name:{widget.name}</p>
               <p>Language:{widget.language}</p>
             </div>
@@ -46,7 +46,12 @@ const WidgetsList = (props) => {
               ) : null
             ) : null}
           </div>
-        ))}
+        ))
+      ) : (
+        <div>
+          <p className="no-data">No data available</p>
+        </div>
+      )}
     </div>
   );
 };
