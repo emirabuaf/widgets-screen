@@ -14,18 +14,15 @@ const MultiStepForm = (props) => {
   const nextStep = () => {
     if (inputValue.language !== "") {
       setCurrentStep(currentStep + 1);
+      setError(false);
     } else {
       setError(true);
+      setCurrentStep(currentStep);
     }
-  };
-
-  const prevStep = () => {
-    setCurrentStep(currentStep - 1);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setInputValue((prevState) => ({
       inputValue: { ...prevState.inputValue, [name]: value },
     }));
@@ -38,15 +35,15 @@ const MultiStepForm = (props) => {
     for (key in convert) {
       if (convert.hasOwnProperty(key)) {
         var value = convert[key];
-        props.handleUpdate(value);
-        // localStorage.setItem("newValue", JSON.stringify(value));
-        // localStorage.getItem("newValue");
-        // var storage = localStorage.getItem("newValue");
-        // console.log(storage);
-        // localStorage.setItem("watchList", JSON.stringify(props.formData));
+        if (value.name == "") {
+          props.setIsVisible(true);
+          setError(true);
+        } else {
+          props.setIsVisible(false);
+          props.handleUpdate(value);
+        }
       }
     }
-    props.setIsVisible(false);
   };
 
   const showStep = () => {
@@ -55,7 +52,7 @@ const MultiStepForm = (props) => {
         <Step1
           nextStep={nextStep}
           handleChange={handleChange}
-          language={inputValue.language}
+          value={inputValue.name}
           error={error}
         />
       );
@@ -63,9 +60,8 @@ const MultiStepForm = (props) => {
       return (
         <Step2
           finishStep={handleSubmit}
-          prevStep={prevStep}
           handleChange={handleChange}
-          name={inputValue.name}
+          value={inputValue.language}
           error={error}
         />
       );

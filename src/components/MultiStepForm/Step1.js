@@ -1,16 +1,18 @@
 import React from "react";
 const Step1 = (props) => {
-  const { error, handleChange, nextStep } = props;
+  const { value, error, handleChange, nextStep } = props;
   return (
     <div>
       <p>
         <label htmlFor="language">Language:</label>
-        <input
-          type="text"
-          name="language"
-          value={props.language}
-          onChange={handleChange}
-        />
+        <select name="language" onChange={handleChange}>
+          <option disabled selected value={props.value}>
+            -- select an option --
+          </option>
+          <option value="German">German</option>
+          <option value="English">English</option>
+          <option value="Spanish">Spanish</option>
+        </select>
       </p>
       {error ? <p className="error-message">All fields are required</p> : null}
 

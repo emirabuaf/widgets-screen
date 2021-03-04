@@ -7,9 +7,7 @@ const Widgets = (props) => {
   return (
     <div className="container">
       <h1>Widgets</h1>
-      {!props.formData.length < 1 ? (
-        <WidgetsList formData={props.formData} />
-      ) : null}
+      <WidgetsList setFormData={props.setFormData} formData={props.formData} />
       <AddWidget setIsVisible={props.setIsVisible} />
     </div>
   );

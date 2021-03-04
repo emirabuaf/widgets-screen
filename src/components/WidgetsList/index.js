@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles.css";
+import ModalForm from "../Modal";
 
 const WidgetsList = (props) => {
-  const [widgets, setWidgets] = useState(props.formData);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const handleDeleteWidget = (index) => {
-    widgets.splice(index, 1);
-    const newList = widgets.filter((item) => item.index !== index);
-    setWidgets(newList);
-    console.log(widgets.length);
+    props.formData.splice(index, 1);
+    const newList = props.formData.filter((item) => item.index !== index);
+    props.setFormData(newList);
+    localStorage.setItem("newValue", JSON.stringify(props.formData));
+    setModalVisible(false);
+  };
+
+  const toggleVisible = (index) => {
+    setModalVisible(!modalVisible);
+    setSelectedItem(index);
   };
 
   return (
@@ -20,11 +28,20 @@ const WidgetsList = (props) => {
             <p>Language:{widget.language}</p>
           </div>
           <button
+            onClick={() => toggleVisible(index)}
+            type="button"
             className="delete-button"
-            onClick={() => handleDeleteWidget(index)}
           >
             Delete
           </button>
+          {selectedItem == index ? (
+            modalVisible == true ? (
+              <ModalForm
+                toggleVisible={toggleVisible}
+                onClick={() => handleDeleteWidget(index)}
+              />
+            ) : null
+          ) : null}
         </div>
       ))}
     </div>
