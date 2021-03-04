@@ -21,29 +21,32 @@ const WidgetsList = (props) => {
 
   return (
     <div>
-      {props.formData.map((widget, index) => (
-        <div className="widget-wrapper" key={index}>
-          <div>
-            <p>Name:{widget.name}</p>
-            <p>Language:{widget.language}</p>
+      {props.formData &&
+        props.formData.map((widget, index) => (
+          <div className="widget-wrapper" key={index}>
+            <div>
+              <p>Name:{widget.name}</p>
+              <p>Language:{widget.language}</p>
+            </div>
+            <button
+              onClick={() => toggleVisible(index)}
+              type="button"
+              className="delete-button"
+              data-test="component-delete"
+            >
+              Delete
+            </button>
+            {selectedItem == index ? (
+              modalVisible == true ? (
+                <ModalForm
+                  data-test="component-modal"
+                  toggleVisible={toggleVisible}
+                  onClick={() => handleDeleteWidget(index)}
+                />
+              ) : null
+            ) : null}
           </div>
-          <button
-            onClick={() => toggleVisible(index)}
-            type="button"
-            className="delete-button"
-          >
-            Delete
-          </button>
-          {selectedItem == index ? (
-            modalVisible == true ? (
-              <ModalForm
-                toggleVisible={toggleVisible}
-                onClick={() => handleDeleteWidget(index)}
-              />
-            ) : null
-          ) : null}
-        </div>
-      ))}
+        ))}
     </div>
   );
 };

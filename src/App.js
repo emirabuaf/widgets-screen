@@ -5,7 +5,7 @@ import MultiStepForm from "./components/MultiStepForm";
 
 function App() {
   const [formData, setFormData] = useState(
-    JSON.parse(localStorage.getItem("newValue"))
+    JSON.parse(localStorage.getItem("newValue")) || []
   );
   const [isVisible, setIsVisible] = useState(false);
 
@@ -17,14 +17,16 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div data-test="component-app" className="App">
       <Widgets
+        data-test="component-widgets"
         setIsVisible={setIsVisible}
         formData={formData}
         setFormData={setFormData}
       />
       {isVisible == true ? (
         <MultiStepForm
+          data-test="component-multistep"
           setIsVisible={setIsVisible}
           handleUpdate={updateData}
           formData={formData}

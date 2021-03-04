@@ -50,6 +50,7 @@ const MultiStepForm = (props) => {
     if (currentStep === 1)
       return (
         <Step1
+          data-test="component-step1"
           nextStep={nextStep}
           handleChange={handleChange}
           value={inputValue.name}
@@ -59,6 +60,7 @@ const MultiStepForm = (props) => {
     if (currentStep === 2)
       return (
         <Step2
+          data-test="component-step2"
           finishStep={handleSubmit}
           handleChange={handleChange}
           value={inputValue.language}

@@ -8,7 +8,11 @@ const AddWidget = (props) => {
 
   return (
     <div>
-      <button className="add-widget" onClick={toggleVisible}>
+      <button
+        data-test="component-addwidget"
+        className="add-widget"
+        onClick={toggleVisible}
+      >
         Add Widget
       </button>
     </div>

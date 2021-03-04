@@ -3,7 +3,7 @@ const Step2 = (props) => {
   const { value, error, handleChange, finishStep } = props;
 
   return (
-    <div className="step1-wrapper">
+    <div className="step1-wrapper" data-test="component-name">
       <p>
         <label htmlFor="name">Name:</label>
         <input

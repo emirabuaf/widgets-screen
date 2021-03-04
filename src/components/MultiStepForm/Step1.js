@@ -4,7 +4,9 @@ const Step1 = (props) => {
   return (
     <div>
       <p>
-        <label htmlFor="language">Language:</label>
+        <label data-test="component-language" htmlFor="language">
+          Language:
+        </label>
         <select name="language" onChange={handleChange}>
           <option disabled selected value={props.value}>
             -- select an option --
@@ -16,7 +18,11 @@ const Step1 = (props) => {
       </p>
       {error ? <p className="error-message">All fields are required</p> : null}
 
-      <button className="button" onClick={nextStep}>
+      <button
+        data-test="component-next-button"
+        className="button"
+        onClick={nextStep}
+      >
         Next
       </button>
     </div>
