@@ -1,5 +1,15 @@
 import App from "./App";
 import Enzyme, { shallow, mount } from "enzyme";
+import {
+  render,
+  fireEvent,
+  screen,
+  getByText,
+  queryAllByText,
+  getByTestId,
+} from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
+
 import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import AddWidget from "./components/AddWidget";
 import MultiStepForm from "./components/MultiStepForm";
@@ -71,12 +81,19 @@ describe("multi-step wizard", () => {
   });
 });
 
-test("The deleting widget asks confirmation with a modal window.", () => {
-  // not working
-  const wrapper = shallow(<WidgetsList />);
-  const deleteWidget = findByTestAttr(wrapper, "component-delete");
-  const modalComponent = findByTestAttr(wrapper, "component-modal");
+describe("The deleting widget asks confirmation with a modal window.", () => {
+  test("no data available", () => {
+    render(<WidgetsList formData={[]} />);
+    expect(screen.getByText(/No data available/)).toBeInTheDocument();
+  });
 
-  deleteWidget.simulate("click");
-  expect(modalComponent.length).toBe(1);
+  test("data available", () => {
+    const mockedFormDataProp = [{ name: "dummy", language: "dummy" }];
+    render(<WidgetsList formData={mockedFormDataProp} />);
+
+    fireEvent.click(screen.queryByText(/Delete/));
+    const modalComponent = document.querySelector(".modal-dialog");
+
+    expect(modalComponent).toBeTruthy();
+  });
 });

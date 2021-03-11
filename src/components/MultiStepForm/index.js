@@ -73,6 +73,7 @@ const MultiStepForm = (props) => {
   return (
     <div>
       <FormModal
+        data-test="component-wizard"
         currentStep={currentStep}
         showSteps={showStep()}
         show={props.isVisible}

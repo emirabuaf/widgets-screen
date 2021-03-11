@@ -21,7 +21,7 @@ const WidgetsList = (props) => {
 
   return (
     <div>
-      {props.formData.length !== 0 ? (
+      {props.formData && props.formData.length !== 0 ? (
         props.formData.map((widget, index) => (
           <div className="widget-wrapper" key={index}>
             <div className="name-language">
@@ -32,14 +32,12 @@ const WidgetsList = (props) => {
               onClick={() => toggleVisible(index)}
               type="button"
               className="delete-button"
-              data-test="component-delete"
             >
               Delete
             </button>
             {selectedItem == index ? (
               modalVisible == true ? (
                 <ModalForm
-                  data-test="component-modal"
                   toggleVisible={toggleVisible}
                   onClick={() => handleDeleteWidget(index)}
                 />
@@ -49,7 +47,9 @@ const WidgetsList = (props) => {
         ))
       ) : (
         <div>
-          <p className="no-data">No data available</p>
+          <p data-testid="component-nodata" className="no-data">
+            No data available
+          </p>
         </div>
       )}
     </div>
