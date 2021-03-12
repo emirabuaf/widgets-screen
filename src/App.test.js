@@ -4,7 +4,6 @@ import {
   render,
   fireEvent,
   screen,
-  getByText,
   queryAllByText,
   getByTestId,
 } from "@testing-library/react";
@@ -76,8 +75,18 @@ describe("multi-step wizard", () => {
     expect(step2Component.length).toBe(1);
   });
   test("Create button adds new widget and then takes back to overview on success.", () => {
-    // does nothing
-    const wrapper = shallow(<App {...appProps} />);
+    // add new widget
+    const finishStep = jest.fn();
+    const { getByTestId } = render(<Step2 finishStep={finishStep} />);
+    let newWidget = { name: "dummy", language: "dummy" };
+    fireEvent.change(getByTestId("newInputValue"), {
+      target: { value: newWidget },
+    });
+    const finishButton = screen.getByText("Finish");
+    expect(finishButton).toBeInTheDocument();
+    fireEvent.click(finishButton);
+    expect(finishStep).toHaveBeenCalledTimes(1);
+    // finish button not visible
   });
 });
 

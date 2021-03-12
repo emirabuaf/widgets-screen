@@ -12,6 +12,7 @@ const Step2 = (props) => {
           name="name"
           value={props.value}
           onChange={handleChange}
+          data-testid="newInputValue"
         />
       </p>
       {error ? <p className="error-message">All fields are required!</p> : null}
