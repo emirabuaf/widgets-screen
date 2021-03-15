@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./styles.css";
 import ModalForm from "../Modal";
+import DeleteWidget from "../DeleteWidget";
 
 const WidgetsList = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -28,13 +29,8 @@ const WidgetsList = (props) => {
               <p>Name: {widget.name}</p>
               <p>Language: {widget.language}</p>
             </div>
-            <button
-              onClick={() => toggleVisible(index)}
-              type="button"
-              className="delete-button"
-            >
-              Delete
-            </button>
+            <DeleteWidget onClick={() => toggleVisible(index)} />
+
             {selectedItem == index ? (
               modalVisible == true ? (
                 <ModalForm
