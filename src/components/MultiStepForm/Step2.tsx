@@ -1,5 +1,13 @@
 import React from "react";
-const Step2 = (props) => {
+
+interface Step2Props {
+  finishStep:(e:any) => void;
+  handleChange:(e: any) => void;
+  value: string;
+  error: boolean;
+}
+
+const Step2:React.FC<Step2Props> = (props:Step2Props) => {
   const { value, error, handleChange, finishStep } = props;
 
   return (

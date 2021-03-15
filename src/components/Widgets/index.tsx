@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import WidgetsList from "../WidgetsList";
 import AddWidget from "../AddWidget";
-import styles from "./styles.css";
+import { IData } from '../../App'
+import "./styles.css";
 
-const Widgets = (props) => {
+
+export interface Props {
+  setIsVisible: Dispatch<SetStateAction<boolean>>;
+  formData: IData[];
+  setFormData: Dispatch<SetStateAction<IData[]>>;
+}
+
+const Widgets:React.FC<Props> = (props:Props) => {
   return (
     <div className="container">
       <h1 className="header">Widgets</h1>

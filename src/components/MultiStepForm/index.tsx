@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, {Dispatch, SetStateAction , useState } from "react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
-import styles from "./styles.css";
+import "./styles.css";
 import FormModal from "./FormModal";
+import { IData } from '../../App'
 
-const MultiStepForm = (props) => {
+interface FormProps {
+  isVisible: boolean;
+  setIsVisible: any;
+  formData?: IData[];
+  setFormData?: Dispatch<SetStateAction<IData[]>>;
+  handleUpdate: (e:any) => void;
+}
+
+const MultiStepForm:React.FC<FormProps> = (props:FormProps) => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [inputValue, setInputValue] = useState({
+  const [inputValue, setInputValue] = useState<any>({
     name: "",
     language: "",
   });
@@ -22,20 +31,20 @@ const MultiStepForm = (props) => {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setInputValue((prevState) => ({
+    setInputValue((prevState:any) => ({
       inputValue: { ...prevState.inputValue, [name]: value },
     }));
   };
 
-  const handleSubmit = (key) => {
+  const handleSubmit = (key:any) => {
     const newValue = Object.values(inputValue);
     const newObject = Object.assign({}, newValue);
 
     for (key in newObject) {
       if (newObject.hasOwnProperty(key)) {
-        var value = newObject[key];
+        var value:any = newObject[key];
         if (!value.name) {
           props.setIsVisible(true);
           setError(true);

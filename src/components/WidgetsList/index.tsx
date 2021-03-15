@@ -1,28 +1,36 @@
-import React, { useState } from "react";
-import styles from "./styles.css";
+import React, { useState, Dispatch, SetStateAction } from "react";
+import "./styles.css";
 import ModalForm from "../Modal";
 import DeleteWidget from "../DeleteWidget";
+import { IData } from '../../App'
 
-const WidgetsList = (props) => {
+interface ListProps {
+  formData: IData[];
+  setFormData: Dispatch<SetStateAction<IData[]>>;
+}
+
+
+
+const WidgetsList:React.FC<ListProps> = (props:ListProps) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const handleDeleteWidget = (index) => {
+  const handleDeleteWidget = (index:number) => {
     props.formData.splice(index, 1);
-    const newList = props.formData.filter((item) => item.index !== index);
+    const newList = props.formData.filter((item:any) => item.index !== index);
     props.setFormData(newList);
     localStorage.setItem("newValue", JSON.stringify(props.formData));
     setModalVisible(false);
   };
 
-  const toggleVisible = (index) => {
+  const toggleVisible = (index:any) => {
     setModalVisible(!modalVisible);
     setSelectedItem(index);
   };
 
   return (
     <div>
-      {props.formData && props.formData.length !== 0 ? (
+      {props.formData.length !== 0 ? (
         props.formData.map((widget, index) => (
           <div className="widget-wrapper" key={index}>
             <div className="name-language">

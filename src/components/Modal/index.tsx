@@ -3,7 +3,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
-const ModalForm = (props) => {
+interface ModalForm {
+  toggleVisible:(e:any) => void;
+  onClick:() => void;
+}
+
+const ModalForm:React.FC<ModalForm> = (props:ModalForm) => {
   return (
     <Modal show={true}>
       <Modal.Body>Are you sure want to delete?</Modal.Body>

@@ -3,13 +3,20 @@ import "./App.css";
 import Widgets from "./components/Widgets";
 import MultiStepForm from "./components/MultiStepForm";
 
-function App() {
-  const [formData, setFormData] = useState(
-    JSON.parse(localStorage.getItem("newValue")) || []
-  );
+export interface IData {
+  name: string;
+  language: string;
+}
+
+const App: React.FC = () => {
+  const [formData, setFormData] = useState<IData []>([]);
   const [isVisible, setIsVisible] = useState(false);
 
-  const updateData = (value) => {
+  useEffect(() => {
+    setFormData(JSON.parse(localStorage.getItem("newValue") || "[]" ))
+  },[])
+
+  const updateData = (value:IData) => {
     formData.push(value);
     const newArray = [...formData];
     setFormData(newArray);

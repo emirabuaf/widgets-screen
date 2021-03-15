@@ -1,8 +1,15 @@
-import React from "react";
+import React,{Dispatch, SetStateAction } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Modal from "react-bootstrap/Modal";
 
-const FormModal = (props) => {
+interface FormModal {
+  currentStep: number;
+  showSteps:any;
+  show:boolean;
+  onHide: Dispatch<SetStateAction<boolean>>;
+}
+
+const FormModal:React.FC<FormModal> = (props:FormModal) => {
   return (
     <Modal
       {...props}

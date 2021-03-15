@@ -1,7 +1,11 @@
-import React from "react";
-import styles from "./styles.css";
+import React, { Dispatch, SetStateAction } from "react";
+import "./styles.css";
 
-const AddWidget = (props) => {
+interface AddWidgetProps {
+  setIsVisible: Dispatch<SetStateAction<boolean>>;
+}
+
+const AddWidget:React.FC<AddWidgetProps> = (props:AddWidgetProps) => {
   const toggleVisible = () => {
     props.setIsVisible(true);
   };
